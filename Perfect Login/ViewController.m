@@ -18,11 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //Set background to view
-    UIImageView *background = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    background.image = [UIImage imageNamed:@"background"];
-    [self.view addSubview:background];
-    [self.view sendSubviewToBack:background];
+    //Set background to clear so window backgroud is visible in view controller
+    self.view.backgroundColor = [UIColor clearColor];
     
     //Set icon to text field
     self.txtEmail.leftViewMode = UITextFieldViewModeAlways;
@@ -39,8 +36,15 @@
     self.imgProcessing.animationImages = loadingImgs;
     self.imgProcessing.animationDuration = loadingImgs.count / 20.0;
     self.imgProcessing.hidden = YES;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    [self.view addGestureRecognizer:tapGesture];
+    
 }
 
+-(void)viewTapped:(UITapGestureRecognizer *)tapGesture{
+    [self.view endEditing:YES];
+}
 
 - (void)viewDidAppear:(BOOL)animated
 {
