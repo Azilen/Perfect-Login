@@ -39,6 +39,14 @@
     self.imgProcessing.animationImages = loadingImgs;
     self.imgProcessing.animationDuration = loadingImgs.count / 20.0;
     self.imgProcessing.hidden = YES;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    [self.view addGestureRecognizer:tapGesture];
+    
+}
+
+-(void)viewTapped:(UITapGestureRecognizer *)tapGesture{
+    [self.view endEditing:YES];
 }
 
 
